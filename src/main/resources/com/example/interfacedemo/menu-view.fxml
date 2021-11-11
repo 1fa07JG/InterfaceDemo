@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #6ae3e6;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfacedemo.MenuController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <DatePicker layoutX="627.0" layoutY="14.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></DatePicker>
+            <ImageView fitHeight="97.0" fitWidth="200.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <GridPane alignment="CENTER" gridLinesVisible="true" maxWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #20e3e6;">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="60.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.0" minWidth="10.0" prefWidth="180.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="343.0" minWidth="10.0" prefWidth="180.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="306.0" minWidth="10.0" prefWidth="180.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="180.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.0" minWidth="10.0" prefWidth="180.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label alignment="CENTER" text="Montag" GridPane.columnIndex="1" />
+            <Label text="Dienstag" GridPane.columnIndex="2" />
+            <Label text="Mittwoch" GridPane.columnIndex="3" />
+            <Label text="Donnerstag" GridPane.columnIndex="4" />
+            <Label text="Freitag" GridPane.columnIndex="5" />
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <children>
+                  <TextField maxWidth="160.0" promptText="Gericht" />
+                  <TextField maxWidth="160.0" promptText="Preis" />
+                  <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+                  <Button mnemonicParsing="false" text="Löschen">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </VBox>
+            <VBox spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <TextArea fx:id="foodMonA" maxHeight="200.0" maxWidth="160.0" prefHeight="200.0" prefWidth="200.0" promptText="Gericht" />
+                  <TextField fx:id="priceMonA" maxWidth="160.0" promptText="Preis" />
+                  <ImageView fx:id="picMonA" fitHeight="150.0" fitWidth="180.0" onMouseClicked="#setPicture" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+                  <Button fx:id="deleteMonA" mnemonicParsing="false" onAction="#deleteMenu" text="Löschen">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <TextField maxWidth="160.0" promptText="Gericht" />
+                  <TextField maxWidth="160.0" promptText="Preis" />
+                  <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+                  <Button mnemonicParsing="false" text="Löschen">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <children>
+                  <TextField maxWidth="160.0" promptText="Gericht" />
+                  <TextField maxWidth="160.0" promptText="Preis" />
+                  <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+                  <Button mnemonicParsing="false" text="Löschen">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+               <children>
+                  <TextField maxWidth="160.0" promptText="Gericht" />
+                  <TextField maxWidth="160.0" promptText="Preis" />
+                  <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+                  <Button mnemonicParsing="false" text="Löschen">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <TextField maxWidth="160.0" promptText="Gericht" />
+                  <TextField maxWidth="160.0" promptText="Preis" />
+                  <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+                  <Button mnemonicParsing="false" text="Löschen">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <TextField maxWidth="160.0" promptText="Gericht" />
+                  <TextField maxWidth="160.0" promptText="Preis" />
+                  <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+                  <Button mnemonicParsing="false" text="Löschen">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <children>
+                  <TextField maxWidth="160.0" promptText="Gericht" />
+                  <TextField maxWidth="160.0" promptText="Preis" />
+                  <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+                  <Button mnemonicParsing="false" text="Löschen">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+               <children>
+                  <TextField maxWidth="160.0" promptText="Gericht" />
+                  <TextField maxWidth="160.0" promptText="Preis" />
+                  <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+                  <Button mnemonicParsing="false" text="Löschen">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+               <children>
+                  <TextField maxWidth="160.0" promptText="Gericht" />
+                  <TextField maxWidth="160.0" promptText="Preis" />
+                  <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+                  <Button mnemonicParsing="false" text="Löschen">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Menü A" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Menü B" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Button layoutX="806.0" layoutY="14.0" mnemonicParsing="false" text="Speicheren">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="Exit" layoutX="926.0" layoutY="14.0" mnemonicParsing="false" onAction="#terminate" text="Abbrechen">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button layoutX="660.0" layoutY="14.0" mnemonicParsing="false" text="Show Preview">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
