@@ -3,6 +3,7 @@ package com.example.interfacedemo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -16,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MenuController {
 
@@ -142,8 +144,30 @@ public class MenuController {
     @FXML
     private Button exit;
 
+    @FXML
+    private Label mesage;
+
     public MenuController() {
     }
+
+    @FXML
+    private Button verify;
+
+    @FXML
+    void checkInput(ActionEvent event) {
+        //boolean corect=true;
+        ArrayList<TextArea> textAreas = new ArrayList<>(Arrays.asList(foodMonA, foodMonB, foodTueA,foodTueB, foodWedA,foodWedB, foodThuA,
+                foodThuB  , foodFriA,foodFriB));
+        for (int i = 0; i < textAreas.lastIndexOf(textAreas); i++) {
+            if (Objects.equals(textAreas.get(i).getText(), "")){
+                //corect=false;
+                mesage.setText("mindestens eine Speise hat keinen Namen ");
+                System.out.println("mindestens eine Speise hat keinen Namen ");
+            }
+        }
+
+        }
+    //}
 
     String getFood(TextField food){
         return food.getText();
