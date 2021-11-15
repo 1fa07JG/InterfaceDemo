@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 public class MenuController {
 
@@ -158,13 +159,11 @@ public class MenuController {
         //boolean corect=true;
         ArrayList<TextArea> textAreas = new ArrayList<>(Arrays.asList(foodMonA, foodMonB, foodTueA,foodTueB, foodWedA,foodWedB, foodThuA,
                 foodThuB  , foodFriA,foodFriB));
-        for (int i = 0; i < textAreas.lastIndexOf(textAreas); i++) {
-            if (Objects.equals(textAreas.get(i).getText(), "")){
-                //corect=false;
-                mesage.setText("mindestens eine Speise hat keinen Namen ");
-                System.out.println("mindestens eine Speise hat keinen Namen ");
-            }
-        }
+        //corect=false;
+        IntStream.range(0, textAreas.lastIndexOf(textAreas)).filter(i -> Objects.equals(textAreas.get(i).getText(), "")).forEach(i -> {
+            mesage.setText("mindestens eine Speise hat keinen Namen ");
+            System.out.println("mindestens eine Speise hat keinen Namen ");
+        });
 
         }
     //}
