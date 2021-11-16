@@ -18,10 +18,11 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <DatePicker layoutX="627.0" layoutY="14.0">
+            <DatePicker fx:id="date" layoutX="627.0" layoutY="14.0" onHiding="#getWeek">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></DatePicker>
+               </cursor>
+            </DatePicker>
             <ImageView fitHeight="97.0" fitWidth="200.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
@@ -47,7 +48,7 @@
             <Label text="Freitag" GridPane.columnIndex="5" />
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <children>
-                  <TextArea fx:id="foodWedA" maxHeight="50.0" maxWidth="160.0" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
+                  <TextArea fx:id="txtAreaFoodWedA" maxHeight="50.0" maxWidth="160.0" onKeyTyped="#getWhite" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
                   <TextField fx:id="priceWedA" maxWidth="160.0" promptText="Preis" />
                   <ImageView fx:id="picWedA" fitHeight="150.0" fitWidth="180.0" onMouseClicked="#setPicture" pickOnBounds="true" preserveRatio="true">
                      <cursor>
@@ -64,7 +65,7 @@
             </VBox>
             <VBox maxHeight="310.0" prefHeight="310.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <TextArea fx:id="foodMonA" maxHeight="50.0" maxWidth="160.0" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
+                  <TextArea fx:id="txtAreaFoodMonA" maxHeight="50.0" maxWidth="160.0" onKeyTyped="#getWhite" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
                   <TextField fx:id="priceMonA" maxWidth="160.0" promptText="Preis" />
                   <ImageView fx:id="picMonA" fitHeight="150.0" fitWidth="180.0" onMouseClicked="#setPicture" pickOnBounds="true" preserveRatio="true">
                      <cursor>
@@ -81,7 +82,7 @@
             </VBox>
             <VBox maxHeight="310.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <TextArea fx:id="foodTueA" maxHeight="50.0" maxWidth="160.0" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
+                  <TextArea fx:id="txtAreaFoodTueA" maxHeight="50.0" maxWidth="160.0" onKeyTyped="#getWhite" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
                   <TextField fx:id="priceTueA" maxWidth="160.0" promptText="Preis" />
                   <ImageView fx:id="picTueA" fitHeight="150.0" fitWidth="180.0" onMouseClicked="#setPicture" pickOnBounds="true" preserveRatio="true">
                      <cursor>
@@ -98,7 +99,7 @@
             </VBox>
             <VBox maxHeight="310.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <children>
-                  <TextArea fx:id="foodThuA" maxHeight="50.0" maxWidth="160.0" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
+                  <TextArea fx:id="txtAreaFoodThuA" maxHeight="50.0" maxWidth="160.0" onKeyTyped="#getWhite" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
                   <TextField fx:id="priceThuA" maxWidth="160.0" promptText="Preis" />
                   <ImageView fx:id="picThuA" fitHeight="150.0" fitWidth="180.0" onMouseClicked="#setPicture" pickOnBounds="true" preserveRatio="true">
                      <cursor>
@@ -115,7 +116,7 @@
             </VBox>
             <VBox maxHeight="310.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                <children>
-                  <TextArea fx:id="foodFriA" maxHeight="50.0" maxWidth="160.0" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
+                  <TextArea fx:id="txtAreaFoodFriA" maxHeight="50.0" maxWidth="160.0" onKeyTyped="#getWhite" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
                   <TextField fx:id="priceFriA" maxWidth="160.0" promptText="Preis" />
                   <ImageView fx:id="picFriA" fitHeight="150.0" fitWidth="180.0" onMouseClicked="#setPicture" pickOnBounds="true" preserveRatio="true">
                      <cursor>
@@ -132,7 +133,7 @@
             </VBox>
             <VBox maxHeight="310.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <TextArea fx:id="foodMonB" maxHeight="50.0" maxWidth="160.0" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
+                  <TextArea fx:id="txtAreaFoodMonB" maxHeight="50.0" maxWidth="160.0" onKeyTyped="#getWhite" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
                   <TextField fx:id="priceMonB" maxWidth="160.0" promptText="Preis" />
                   <ImageView fx:id="picMonB" fitHeight="150.0" fitWidth="180.0" onMouseClicked="#setPicture" pickOnBounds="true" preserveRatio="true">
                      <cursor>
@@ -149,7 +150,7 @@
             </VBox>
             <VBox maxHeight="310.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
-                  <TextArea fx:id="foodTueB" maxHeight="50.0" maxWidth="160.0" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
+                  <TextArea fx:id="txtAreaFoodTueB" maxHeight="50.0" maxWidth="160.0" onKeyTyped="#getWhite" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
                   <TextField fx:id="priceTueB" maxWidth="160.0" promptText="Preis" />
                   <ImageView fx:id="picTueB" fitHeight="150.0" fitWidth="180.0" onMouseClicked="#setPicture" pickOnBounds="true" preserveRatio="true">
                      <cursor>
@@ -166,7 +167,7 @@
             </VBox>
             <VBox maxHeight="310.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
-                  <TextArea fx:id="foodWedB" maxHeight="50.0" maxWidth="160.0" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
+                  <TextArea fx:id="txtAreaFoodWedB" maxHeight="50.0" maxWidth="160.0" onKeyTyped="#getWhite" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
                   <TextField fx:id="priceWedB" maxWidth="160.0" promptText="Preis" />
                   <ImageView fx:id="picWedB" fitHeight="150.0" fitWidth="180.0" onMouseClicked="#setPicture" pickOnBounds="true" preserveRatio="true">
                      <cursor>
@@ -183,7 +184,7 @@
             </VBox>
             <VBox maxHeight="310.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <children>
-                  <TextArea fx:id="foodThuB" maxHeight="50.0" maxWidth="160.0" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
+                  <TextArea fx:id="txtAreaFoodThuB" maxHeight="50.0" maxWidth="160.0" onKeyTyped="#getWhite" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
                   <TextField fx:id="priceThuB" maxWidth="160.0" promptText="Preis" />
                   <ImageView fx:id="picThuB" fitHeight="150.0" fitWidth="180.0" onMouseClicked="#setPicture" pickOnBounds="true" preserveRatio="true">
                      <cursor>
@@ -200,7 +201,7 @@
             </VBox>
             <VBox maxHeight="310.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                <children>
-                  <TextArea fx:id="foodFriB" maxHeight="50.0" maxWidth="160.0" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
+                  <TextArea fx:id="txtAreaFoodFriB" maxHeight="50.0" maxWidth="160.0" onKeyTyped="#getWhite" prefHeight="200.0" prefWidth="160.0" promptText="Gericht" />
                   <TextField fx:id="priceFriB" maxWidth="160.0" promptText="Preis" />
                   <ImageView fx:id="picFriB" fitHeight="150.0" fitWidth="180.0" onMouseClicked="#setPicture" pickOnBounds="true" preserveRatio="true">
                      <cursor>
@@ -242,7 +243,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
             <Button fx:id="verify" layoutX="557.0" layoutY="14.0" mnemonicParsing="false" onAction="#checkInput" text="Prüfen" />
-            <Label fx:id="mesage" layoutX="8.0" layoutY="18.0" prefHeight="17.0" prefWidth="491.0" textFill="#ba0000" />
+            <Label fx:id="message" layoutX="8.0" layoutY="18.0" prefHeight="17.0" prefWidth="491.0" textFill="#ba0000" />
          </children>
       </AnchorPane>
    </children>

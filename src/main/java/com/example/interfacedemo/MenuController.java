@@ -2,12 +2,11 @@ package com.example.interfacedemo;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
@@ -15,6 +14,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -26,7 +26,7 @@ public class MenuController {
     private Button deleteMonA;
 
     @FXML
-    private TextArea foodMonA;
+    private TextArea txtAreaFoodMonA;
 
     @FXML
     private TextField priceMonA;
@@ -38,7 +38,7 @@ public class MenuController {
     private Button deleteTueA;
 
     @FXML
-    private TextArea foodTueA;
+    private TextArea txtAreaFoodTueA;
 
     @FXML
     private TextField priceTueA;
@@ -50,7 +50,7 @@ public class MenuController {
     private Button deleteWedA;
 
     @FXML
-    private TextArea foodWedA;
+    private TextArea txtAreaFoodWedA;
 
     @FXML
     private TextField priceWedA;
@@ -62,7 +62,7 @@ public class MenuController {
     private Button deleteThuA;
 
     @FXML
-    private TextArea foodThuA;
+    private TextArea txtAreaFoodThuA;
 
     @FXML
     private TextField priceThuA;
@@ -74,7 +74,7 @@ public class MenuController {
     private Button deleteFriA;
 
     @FXML
-    private TextArea foodFriA;
+    private TextArea txtAreaFoodFriA;
 
     @FXML
     private TextField priceFriA;
@@ -86,7 +86,7 @@ public class MenuController {
     private Button deleteMonB;
 
     @FXML
-    private TextArea foodMonB;
+    private TextArea txtAreaFoodMonB;
 
     @FXML
     private TextField priceMonB;
@@ -98,7 +98,7 @@ public class MenuController {
     private Button deleteTueB;
 
     @FXML
-    private TextArea foodTueB;
+    private TextArea txtAreaFoodTueB;
 
     @FXML
     private TextField priceTueB;
@@ -110,7 +110,7 @@ public class MenuController {
     private Button deleteWedB;
 
     @FXML
-    private TextArea foodWedB;
+    private TextArea txtAreaFoodWedB;
 
     @FXML
     private TextField priceWedB;
@@ -122,7 +122,7 @@ public class MenuController {
     private Button deleteThuB;
 
     @FXML
-    private TextArea foodThuB;
+    private TextArea txtAreaFoodThuB;
 
     @FXML
     private TextField priceThuB;
@@ -134,7 +134,7 @@ public class MenuController {
     private Button deleteFriB;
 
     @FXML
-    private TextArea foodFriB;
+    private TextArea txtAreaFoodFriB;
 
     @FXML
     private TextField priceFriB;
@@ -146,7 +146,10 @@ public class MenuController {
     private Button exit;
 
     @FXML
-    private Label mesage;
+    private Label message;
+
+    @FXML
+    private DatePicker date;
 
     public MenuController() {
     }
@@ -155,29 +158,60 @@ public class MenuController {
     private Button verify;
 
     @FXML
-    void checkInput(ActionEvent event) {
-        //boolean corect=true;
-        ArrayList<TextArea> textAreas = new ArrayList<>(Arrays.asList(foodMonA, foodMonB, foodTueA,foodTueB, foodWedA,foodWedB, foodThuA,
-                foodThuB  , foodFriA,foodFriB));
-        //corect=false;
-        IntStream.range(0, textAreas.lastIndexOf(textAreas)).filter(i -> Objects.equals(textAreas.get(i).getText(), "")).forEach(i -> {
-            mesage.setText("mindestens eine Speise hat keinen Namen ");
-            System.out.println("mindestens eine Speise hat keinen Namen ");
-        });
+    void getWeek(InputMethodEvent event) {
 
+        DatePicker datePicker= ((DatePicker) event.getSource());
+        LocalDate date = datePicker.getValue();
+        System.out.println(date);
+    }
+
+    @FXML
+    void getWhite(KeyEvent event) {
+        TextArea t= ((TextArea) event.getSource());
+        t.getStylesheets().remove("/style.css");
+                System.out.println("called get white");
+    }
+
+
+    @FXML
+    void checkInput(ActionEvent event) {
+        ArrayList<TextArea> textAreas = new ArrayList<>(Arrays.asList(txtAreaFoodMonA, txtAreaFoodMonB, txtAreaFoodTueA, txtAreaFoodTueB, txtAreaFoodWedA, txtAreaFoodWedB, txtAreaFoodThuA,
+                txtAreaFoodThuB, txtAreaFoodFriA, txtAreaFoodFriB));
+        int failure= 0;
+        for (TextArea t : textAreas) {
+
+
+            if (t.getText().equals("")) {
+                t.getStylesheets().add(("/style.css"));
+
+                System.out.println(t.getStyle());
+                failure++;
+                System.out.println("mindestens eine Speise hat keinen Namen ");
+            }
         }
+        IntStream.range(0, textAreas.size()).filter(i -> Objects.equals(textAreas.get(i).getText(), "")).forEach(i -> {
+            //failure.set(failure.get() + 1);
+
+        });
+        switch ((failure)) {
+            case 0 -> message.setText("");
+            case 1 -> message.setText("Eine Speise hat keinen Namen ");
+            default -> message.setText(failure + " Speisen haben keinen Namen ");
+        }
+
+    }
     //}
 
-    String getFood(TextField food){
+    String getFood(TextField food) {
         return food.getText();
     }
 
-    double getPrice(TextField price){
+    double getPrice(TextField price) {
         return Double.parseDouble(price.getText());
     }
 
     String getPicture(ImageView img) {
-    return img.getImage().getUrl();
+        return img.getImage().getUrl();
     }
 
     @FXML
@@ -187,8 +221,8 @@ public class MenuController {
         fileChooser.setTitle("Food Picture");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-        File selectedFile = fileChooser.showOpenDialog( null);
-        FileInputStream file=new FileInputStream(selectedFile);
+        File selectedFile = fileChooser.showOpenDialog(null);
+        FileInputStream file = new FileInputStream(selectedFile);
         Image image = new Image(file);
 
         ImageView source = (ImageView) event.getSource();
@@ -199,27 +233,27 @@ public class MenuController {
     @FXML
     void deleteMenu(ActionEvent event) throws FileNotFoundException {
 
-       ArrayList<String> name = new ArrayList<>(Arrays.asList("deleteMonA", "deleteMonB", "deleteTueA", "deleteTueB", "deleteWedA", "deleteWedB"
-       ,"deleteThuA","deleteThuB","deleteFriA","deleteFriB"));
-       ArrayList<TextArea> textAreas = new ArrayList<>(Arrays.asList(foodMonA, foodMonB, foodTueA,foodTueB, foodWedA,foodWedB, foodThuA,
-               foodThuB  , foodFriA,foodFriB));
-       ArrayList<TextField> textFields=new ArrayList<>(Arrays.asList(priceMonA,priceMonB,priceTueA,priceTueB,priceWedA,priceWedB,
-               priceThuA,priceThuB,priceFriA,priceFriB));
-       ArrayList<ImageView> ImageViews=new ArrayList<>(Arrays.asList(picMonA,picMonB,picTueA,picTueB,picWedA,picWedB,picThuA
-               ,picThuB,picFriA,picFriB));
+        ArrayList<String> name = new ArrayList<>(Arrays.asList("deleteMonA", "deleteMonB", "deleteTueA", "deleteTueB", "deleteWedA", "deleteWedB"
+                , "deleteThuA", "deleteThuB", "deleteFriA", "deleteFriB"));
+        ArrayList<TextArea> textAreas = new ArrayList<>(Arrays.asList(txtAreaFoodMonA, txtAreaFoodMonB, txtAreaFoodTueA, txtAreaFoodTueB, txtAreaFoodWedA, txtAreaFoodWedB, txtAreaFoodThuA,
+                txtAreaFoodThuB, txtAreaFoodFriA, txtAreaFoodFriB));
+        ArrayList<TextField> textFields = new ArrayList<>(Arrays.asList(priceMonA, priceMonB, priceTueA, priceTueB, priceWedA, priceWedB,
+                priceThuA, priceThuB, priceFriA, priceFriB));
+        ArrayList<ImageView> ImageViews = new ArrayList<>(Arrays.asList(picMonA, picMonB, picTueA, picTueB, picWedA, picWedB, picThuA
+                , picThuB, picFriA, picFriB));
         Button b = (Button) event.getSource();
-       String id = b.getId();
+        String id = b.getId();
 
-       int index = name.indexOf(id);
-       TextArea refFood = textAreas.get(index);
-       TextField refPrice = textFields.get(index);
-       ImageView refImage = ImageViews.get(index);
+        int index = name.indexOf(id);
+        TextArea refFood = textAreas.get(index);
+        TextField refPrice = textFields.get(index);
+        ImageView refImage = ImageViews.get(index);
 
         refFood.setText("");
         refPrice.setText("");
         FileInputStream input = new FileInputStream("src/main/resources/images/keinBild.png");
-        Image noimage = new Image(input);
-        refImage.setImage(noimage);
+        Image noImage = new Image(input);
+        refImage.setImage(noImage);
         System.out.println("Called handler deleteMenu()");
     }
 
