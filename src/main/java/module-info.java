@@ -6,4 +6,6 @@ module com.example.interfacedemo {
 
     opens com.example.interfacedemo to javafx.fxml;
     exports com.example.interfacedemo;
+    //exports com.example.output;
+    //opens com.example.output to javafx.fxml;
 }

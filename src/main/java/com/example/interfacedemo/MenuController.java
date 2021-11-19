@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -19,8 +18,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.stream.IntStream;
 
 
 public class MenuController {
@@ -182,40 +179,18 @@ public class MenuController {
 
       //   LocalDate first=date.getYear();
         switch (firstDay.getDayOfWeek()){
-            case MONDAY -> {
-                umrechnung=0;
-                break;
-            }
-            case TUESDAY -> {
-                umrechnung=1;
-                break;
-            }
-            case WEDNESDAY -> {
-                umrechnung=2;
-                break;
-            }
-            case THURSDAY -> {
-                umrechnung=3;
-                break;
-            }
-            case FRIDAY -> {
-                umrechnung=-3;
-                break;
-            }
-            case SATURDAY -> {
-                umrechnung=-2;
-                break;
-            }
-            case SUNDAY -> {
-                umrechnung=-1;
-                break;
-            }
-            default -> {
-                throw new IllegalStateException("Unexpected value: " + firstDay.getDayOfWeek());
-            }
+            case MONDAY -> umrechnung=0;
+            case TUESDAY -> umrechnung=1;
+            case WEDNESDAY -> umrechnung=2;
+            case THURSDAY -> umrechnung=3;
+            case FRIDAY -> umrechnung=-3;
+            case SATURDAY -> umrechnung=-2;
+            case SUNDAY -> umrechnung=-1;
+            default -> throw new IllegalStateException("Unexpected value: " + firstDay.getDayOfWeek());
         }
         int daysCW=(date.getDayOfYear())+umrechnung;
         int calendarWeek=daysCW/7;
+        calendarWeek++;
         kw.setText("KW: "+calendarWeek);
     }
 
@@ -225,47 +200,51 @@ public class MenuController {
         t.getStylesheets().remove("/failure.css");
                 System.out.println("called get white");
     }
-    double toDouble(TextField text){
+    double getPrice(TextField text){
         String s=text.getText();
+        s=s.replace(',','.');
+        s=s.replaceAll("[\\p{L}+*~#%&$§?!@-]", "0");
         return Double.parseDouble(s);
     }
 
     @FXML
     void save(){
+        if (checkInput()){
         /*
         Meal monA =new Meal(txtAreaFoodMonA.getText());
-        monA.setPrice(toDouble(priceMonA));
+        monA.setPrice(getPrice(priceMonA));
         Meal monB =new Meal(txtAreaFoodMonB.getText());
-        monB.setPrice(toDouble(priceMonB));
+        monB.setPrice(getPrice(priceMonB));
         Day mon=new Day(Monday);
         Meal tueA =new Meal(txtAreaFoodTueA.getText());
-        tueA.setPrice(toDouble(priceTueA));
+        tueA.setPrice(getPrice(priceTueA));
         Meal tueB =new Meal(txtAreaFoodTueB.getText());
-        tueB.setPrice(toDouble(priceTueB));
+        tueB.setPrice(getPrice(priceTueB));
         Day tue=new Day(Tuesday);
         Meal wedA =new Meal(txtAreaFoodWedA.getText());
-        wed.setPrice(toDouble(priceWedA));
+        wed.setPrice(getPrice(priceWedA));
         Meal wedB =new Meal(txtAreaFoodWedB.getText());
-        wedB..setPrice(toDouble(priceWedB));
+        wedB.setPrice(getPrice(priceWedB));
         Day wed=new Day(Wendsday);
         Meal thuA =new Meal(txtAreaFoodThuA.getText());
-        thuA.setPrice(toDouble(priceThuA));
+        thuA.setPrice(getPrice(priceThuA));
         Meal thuB =new Meal(txtAreaFoodThuB.getText());
-        thuB.setPrice(toDouble(priceThuB));
+        thuB.setPrice(getPrice(priceThuB));
         Day thu=new Day(Thursday);
         Meal friA =new Meal(txtAreaFoodFriA.getText());
-        friA.setPrice(toDouble(priceFriA));
+        friA.setPrice(getPrice(priceFriA));
         Meal friB =new Meal(txtAreaFoodFriB.getText());
-        friB.setPrice(toDouble(priceFriB));
+        friB.setPrice(getPrice(priceFriB));
         Day fri=new Day(Friday);
         Day []d=new Day[mon,tue,wed,thu,fri];
     Week kw=new Week(days);*/
-        terminate();
+        terminate();}
     }
 
 
     @FXML
-    void checkInput(ActionEvent event) {
+    boolean checkInput() {
+        boolean ready=true;
         ArrayList<TextArea> textAreas = new ArrayList<>(Arrays.asList(txtAreaFoodMonA, txtAreaFoodMonB, txtAreaFoodTueA, txtAreaFoodTueB, txtAreaFoodWedA, txtAreaFoodWedB, txtAreaFoodThuA,
                 txtAreaFoodThuB, txtAreaFoodFriA, txtAreaFoodFriB));
         ArrayList<TextField> textFields = new ArrayList<>(Arrays.asList(priceMonA, priceMonB, priceTueA, priceTueB, priceWedA, priceWedB,
@@ -281,6 +260,7 @@ public class MenuController {
                 System.out.println(t.getStyle());
                 failure++;
                 System.out.println("mindestens eine Speise hat keinen Namen ");
+                ready=false;
             }else {
                 t.getStylesheets().remove("/failure.css");
             }
@@ -292,9 +272,17 @@ public class MenuController {
                 f.getStylesheets().add(("/failure.css"));
                 f.setText("3.9");
                 standardPrice++;
-            }else {
+                ready=false;
+            }else if (f.getText().equals("0.0")){
+                f.getStylesheets().add(("/failure.css"));
+                f.setText("3.9");
+                standardPrice++;
+                ready=false;
+            }
+            else {
                f.getStylesheets().remove("/failure.css");
             }
+            f.setText(String.valueOf(getPrice(f)));
         }
 
 
@@ -305,10 +293,11 @@ public class MenuController {
         }
         switch ((standardPrice)) {
             case 0 -> messagePrice.setText("");
-            case 1 -> messagePrice.setText("Für eine Speise wurde der Standard Preis fo 3,9 € festgelegt ");
+            case 1 -> messagePrice.setText("Für eine Speise wurde der Preis von 3,9 € festgelegt ");
             default -> messagePrice.setText("Für "+standardPrice+" Speisen wurde der Preis fo 3,9 € festgelegt");
         }
 
+        return ready;
     }
 
     @FXML
@@ -321,9 +310,7 @@ public class MenuController {
         return food.getText();
     }
 
-    double getPrice(TextField price) {
-        return Double.parseDouble(price.getText());
-    }
+
 
     String getPicture(ImageView img) {
         return img.getImage().getUrl();

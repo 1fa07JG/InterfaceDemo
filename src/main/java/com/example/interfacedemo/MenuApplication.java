@@ -18,12 +18,9 @@ public class MenuApplication extends Application {
         stage.show();
     }
 
-
-
-    public void generate(Date date,String name,double price,String bildLink){
-       System.out.println("Menü erzeugt");
+    public void generate(Date date, String name, double price, String bildLink){
+        System.out.println("Menü erzeugt");
     }
-
 
 
     public static void main(String[] args) {
